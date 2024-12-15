@@ -1,0 +1,34 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Registrar Fruta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Registrar Fruta</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-list>
+    <!-- Lista de frutas -->
+    <ion-item *ngFor="let fruta of frutas$ | async">
+      <ion-thumbnail slot="start">
+        <img [src]="fruta.imagenUrl" alt="{{ fruta.nombre }}"> <!-- Imagen directamente desde Firebase -->
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ fruta.nombre }}</h2>
+        <p>{{ fruta.descripcion }}</p>
+        <p>Precio: ${{ fruta.precio }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <!-- Botón FAB para registrar una nueva fruta -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="primary" (click)="navigateToRegistrarFruta()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
